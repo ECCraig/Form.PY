@@ -8,7 +8,11 @@ import streamlit as st
 print('=' * 100)
 print('Starting app')
 st.set_page_config('POC Spend')
-st.header('POC Spend')
+col1, col2 = st.columns([5,1])
+with col1:
+    st.header('POC Spend')
+with col2:
+    st.image('centric_logo.png', use_column_width=True)
 
 # Create tabs
 tab1, tab2, tab3 = st.tabs(['Input', 'Remove', 'Dashboard'])
@@ -121,7 +125,7 @@ with tab3:
         df_pivoted = df_month.pivot(index='month_int', columns=['year_int'], values='amount')
         df_pivoted = df_pivoted.fillna(0)
         st.subheader('Spend')
-        st.line_chart(df_pivoted)
+        st.line_chart(df_pivoted, color=['#0DBB1E', '#AFF1B5'])
 
         # Display dataframe
         st.subheader('All data')
