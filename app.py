@@ -119,7 +119,7 @@ with tab3:
 
         # Display line chart: amount per month within calendar year
         df['month'] = df['date'].dt.to_period('M').dt.to_timestamp()
-        df_month = df.groupby(['month']).agg({'amount': sum}).reset_index().sort_values('month', ascending=True)
+        df_month = df.groupby(['month']).agg({'amount': 'sum'}).reset_index().sort_values('month', ascending=True)
         df_month['month_int'] = df_month['month'].dt.month.astype(int)
         df_month['year_int'] = df_month['month'].dt.year
         df_pivoted = df_month.pivot(index='month_int', columns=['year_int'], values='amount')
